@@ -1,9 +1,0 @@
-{
-  "extends": "../base-tsconfig.json",
-  "compilerOptions": {
-    "allowJs": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
-  },
-  "references": [{ "path": "../src" }]
-}

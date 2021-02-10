@@ -1,9 +1,8 @@
-import babel from '@rollup/plugin-babel';
 import del from 'del';
 import pkg from './package.json';
-import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 
-const extensions = ['.js', '.ts']
+const extensions = ['.js', '.d.ts']
 
 export default async function() {
   await del('dist');
@@ -23,13 +22,7 @@ export default async function() {
       }
     ],
     plugins: [
-      resolve({
-        extensions
-      }),
-      babel({
-        exclude: 'node_modules/**',
-        extensions
-      }),
+      typescript()
     ]
   });
 

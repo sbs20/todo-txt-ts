@@ -4,20 +4,20 @@
   "description": "",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "types": "tsc --emitDeclarationOnly --outFile dist/index.d.ts",
     "build": "rollup -c",
     "test": "mocha -r ts-node/register test/**/*.*s",
-    "lint": "eslint **/*.ts",
-    "all": "npm run lint && npm run test && npm run build"
+    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "all": "npm run lint && npm run test && npm run build && npm run types"
   },
   "keywords": [],
   "author": "Sam Strachan",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.12.13",
-    "@babel/preset-typescript": "^7.12.13",
-    "@rollup/plugin-babel": "^5.2.3",
     "@rollup/plugin-node-resolve": "11.1.1",
+    "@rollup/plugin-typescript": "8.1.1",
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
     "@typescript-eslint/eslint-plugin": "^4.14.2",

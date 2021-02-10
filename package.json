@@ -6,7 +6,7 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "types": "tsc --emitDeclarationOnly --outFile dist/index.d.ts",
+    "types": "tsc --project tsconfig.types.json",
     "build": "rollup -c",
     "test": "mocha -r ts-node/register test/**/*.*s",
     "lint": "eslint src/**/*.ts test/**/*.ts",

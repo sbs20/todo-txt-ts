@@ -23,7 +23,9 @@ export default class TaskList {
   }
 
   stringify(): string {
-    return this.items.map(t => t.stringify()).join(this.lineEnding);
+    return this.items
+      .sort((t1, t2) => t1.index - t2.index)
+      .map(t => t.stringify()).join(this.lineEnding);
   }
 
   static parse(s: string): TaskList {

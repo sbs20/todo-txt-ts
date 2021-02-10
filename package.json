@@ -1,7 +1,7 @@
 {
   "name": "todotxt-ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Small Typescript API to todotxt format",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,10 @@
     "type": "git",
     "url": "git://github.com/sbs20/todotxt-ts.git"
   },
-  "keywords": [],
+  "keywords": [
+    "todotxt",
+    "typescript"
+  ],
   "author": "Sam Strachan",
   "license": "ISC",
   "devDependencies": {
@@ -37,6 +40,11 @@
     "typescript": "^4.1.3"
   },
   "files": [
-    "dist"
+    "dist/",
+    "src/",
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "LICENSE"
   ]
 }

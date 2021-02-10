@@ -1,5 +1,5 @@
 import { ITask, Priority, Dictionary } from './types';
-import { formatDate, spliceWhere, tryParseDate } from './utils';
+import { formatDate, spliceWhere, today, tryParseDate } from './utils';
 
 export default class Task implements ITask {
   isComplete: boolean;
@@ -25,6 +25,8 @@ export default class Task implements ITask {
 
     if (s) {
       this.load(s);
+    } else {
+      this.creationDate = today();
     }
   }
 
@@ -70,8 +72,12 @@ export default class Task implements ITask {
     this.body = tokens.join(' ');
   }
 
-  static parse(s: string): Task {
-    return new Task(s);
+  static parse(s: string, index?: number): Task {
+    const task = new Task(s);
+    if (index !== undefined) {
+      task.index = index;
+    }
+    return task;
   }
 
   stringify(): string {
@@ -92,5 +98,10 @@ export default class Task implements ITask {
     this.contexts.forEach(c => tokens.push(c));
     this.projects.forEach(p => tokens.push(p));
     return tokens.join(' ');
+  }
+
+  complete(): void {
+    this.isComplete = true;
+    this.completionDate = today();
   }
 }

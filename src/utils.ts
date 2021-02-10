@@ -6,8 +6,14 @@ export function tryParseDate(s: string): Date | null {
   return null;
 }
 
-export function spliceWhere(items: string[], predicate: (s: string) => boolean): string[] {
-  const result: string[] = [];
+export function today(): Date {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  return now;
+}
+
+export function spliceWhere<T>(items: T[], predicate: (s: T) => boolean): T[] {
+  const result: T[] = [];
   for (let index = 0; index < items.length; index++) {
     if (predicate(items[index])) {
       result.push(items[index]);

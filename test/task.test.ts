@@ -1,11 +1,7 @@
-
 import 'mocha/mocha';
-import chai from 'chai';
-
+import { assert } from 'chai';
 import Task from '../src/task';
 import { ITask } from '../src/types';
-
-const { assert } = chai;
 
 function assertEqual(expected: ITask, actual: ITask): void {
   assert.strictEqual(actual.isComplete, expected.isComplete);
@@ -88,6 +84,22 @@ describe('Task.parse', () => {
       pri: '(A)'
     };
     assertEqual(expected, new Task('x 2018-03-27 2018-02-14 Batteries pri:(A)'));
+  });
+
+  it('General.Actions', () => {
+    const task = new Task('(A) A test task');
+    task.complete();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    assertEqual({
+      priority: 'A',
+      isComplete: true,
+      completionDate: today,
+      contexts: [],
+      projects: [],
+      fields: {},
+      body: 'A test task'
+    }, task);
   });
 });
 

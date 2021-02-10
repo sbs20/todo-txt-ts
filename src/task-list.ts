@@ -14,7 +14,7 @@ export default class TaskList {
     this.items = s.split('\n')
       .map(e => e.trim())
       .filter(e => e.length > 0)
-      .map(e => Task.parse(e));
+      .map((e, i) => Task.parse(e, i));
   }
 
   stringify(): string {

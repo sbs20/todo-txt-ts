@@ -39,7 +39,7 @@ describe('TaskList.preserveLineEndings', () => {
 
 describe('TaskList.preserveSort', () => {
   it('General', () => {
-    let val = 'task1\ntask2';
+    const val = 'task1\ntask2';
     const tasks = TaskList.parse(val);
     const task = tasks.items[0];
     tasks.items[0] = tasks.items[1];

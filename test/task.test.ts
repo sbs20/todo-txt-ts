@@ -57,6 +57,22 @@ describe('Task.parse', () => {
     assertEqual(expected, new Task('This is a test task 2+2 3@3'));
   });
 
+  it('General.Fields', () => {
+    const expected: ITask = {
+      priority: 'A',
+      isComplete: false,
+      contexts: ['play', 'work'],
+      projects: ['test', 'project', 'improvement'],
+      fields: {
+        colour: 'green',
+        due: 'tomorrow'
+      },
+      body: 'This is a test task'
+    };
+
+    assertEqual(expected, new Task('(A) This is a test task @play @work +test +project +improvement due:tomorrow colour:green'));
+  });
+
   it('General.Complete', () => {
     const expected: ITask = {
       priority: 'A',
@@ -107,6 +123,12 @@ describe('Task.stringify', () => {
   it('General', () => {
     assert.strictEqual(
       Task.parse('   (A) This is a  test   task    @work +test    ').stringify(),
-      '(A) This is a test task @work +test');
+      '(A) This is a test task @work +test'
+    );
+
+    assert.strictEqual(
+      Task.parse('(A) This is a test task @work @play +test due:tomorrow').stringify(),
+      '(A) This is a test task @work @play +test due:tomorrow'
+    );
   });
 });

@@ -63,6 +63,7 @@ export default class Task implements ITask {
     this.contexts = spliceWhere(tokens, s => /^@[\S]+/.test(s))
       .map(s => s.substr(1))
       .filter(s => s.length > 0);
+      
     this.projects = spliceWhere(tokens, s => /^\+[\S]+/.test(s))
       .map(s => s.substr(1))
       .filter(s => s.length > 0);
@@ -101,6 +102,9 @@ export default class Task implements ITask {
     tokens.push(this.body);
     this.contexts.forEach(c => tokens.push(`@${c}`));
     this.projects.forEach(p => tokens.push(`+${p}`));
+    Object.keys(this.fields)
+      .map(k => `${k}:${this.fields[k]}`)
+      .forEach(f => tokens.push(f));
     return tokens.join(' ');
   }
 

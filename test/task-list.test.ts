@@ -23,3 +23,16 @@ describe('TaskList.stringify', () => {
     assert.strictEqual(tasks.items[1].index, 1);
   });
 });
+
+describe('TaskList.preserveLineEndings', () => {
+  it('General', () => {
+    let val = 'task1\ntask2';
+    assert.strictEqual(TaskList.parse(val).stringify(), val);
+
+    val = 'task1\r\ntask2\r\ntask3';
+    assert.strictEqual(TaskList.parse(val).stringify(), val);
+
+    val = 'task1\r\ntask2\ntask3';
+    assert.notStrictEqual(TaskList.parse(val).stringify(), val);
+  });
+});

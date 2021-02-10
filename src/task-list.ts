@@ -1,11 +1,16 @@
 import Task from './task';
 
 export default class TaskList {
+  lineEnding: string;
   items: Task[];
 
   constructor(s?: string) {
+    this.lineEnding = '\n';
     this.items = [];
     if (s) {
+      if (/\r\n/.test(s)) {
+        this.lineEnding = '\r\n';
+      }
       this.load(s);
     }
   }
@@ -18,7 +23,7 @@ export default class TaskList {
   }
 
   stringify(): string {
-    return this.items.map(t => t.stringify()).join('\n');
+    return this.items.map(t => t.stringify()).join(this.lineEnding);
   }
 
   static parse(s: string): TaskList {

@@ -29,7 +29,7 @@ export default async function() {
         file: 'dist/index.min.js',
         format: 'iife',
         esModule: false,
-        name: 'TodoTxt'
+        name: 'TodoTxtTs'
       },
     ],
     plugins: [

@@ -1,5 +1,6 @@
 import del from 'del';
 import pkg from './package.json';
+import { terser } from "rollup-plugin-terser";
 import typescript from '@rollup/plugin-typescript';
 
 const extensions = ['.js', '.d.ts']
@@ -12,17 +13,27 @@ export default async function() {
   builds.push({
     input: 'src/index.ts',
     output: [
-      {
-        file: pkg.main,
-        format: 'cjs'
-      },
-      {
-        file: pkg.module,
-        format: 'es'
-      }
+      { file: pkg.main, format: 'cjs' },
+      { file: pkg.module, format: 'esm' }
     ],
     plugins: [
-      typescript()
+      typescript(),
+      terser()
+    ]
+  });
+
+  builds.push({
+    input: 'dist/index.esm.js',
+    output: [
+      {
+        file: 'dist/index.min.js',
+        format: 'iife',
+        esModule: false,
+        name: 'TodoTxt'
+      },
+    ],
+    plugins: [
+      terser({ compress: { ecma: 2019 } }),
     ]
   });
 

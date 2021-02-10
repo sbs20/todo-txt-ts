@@ -60,8 +60,12 @@ export default class Task implements ITask {
       tokens.shift();
     }
 
-    this.contexts = spliceWhere(tokens, s => /^@[\S]+/.test(s));
-    this.projects = spliceWhere(tokens, s => /^\+[\S]+/.test(s));
+    this.contexts = spliceWhere(tokens, s => /^@[\S]+/.test(s))
+      .map(s => s.substr(1))
+      .filter(s => s.length > 0);
+    this.projects = spliceWhere(tokens, s => /^\+[\S]+/.test(s))
+      .map(s => s.substr(1))
+      .filter(s => s.length > 0);
 
     spliceWhere(tokens, s => /[^:]+:[^:]+/.test(s))
       .forEach(s => {
@@ -95,8 +99,8 @@ export default class Task implements ITask {
       tokens.push(formatDate(this.creationDate));
     }
     tokens.push(this.body);
-    this.contexts.forEach(c => tokens.push(c));
-    this.projects.forEach(p => tokens.push(p));
+    this.contexts.forEach(c => tokens.push(`@${c}`));
+    this.projects.forEach(p => tokens.push(`+${p}`));
     return tokens.join(' ');
   }
 

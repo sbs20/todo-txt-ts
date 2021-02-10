@@ -27,8 +27,8 @@ describe('Task.parse', () => {
     const expected: ITask = {
       priority: 'A',
       isComplete: false,
-      contexts: ['@work'],
-      projects: ['+test'],
+      contexts: ['work'],
+      projects: ['test'],
       fields: {},
       body: 'This is a test task'
     };
@@ -45,7 +45,7 @@ describe('Task.parse', () => {
     delete expected.priority;
     assertEqual(expected, new Task('2015-10-26 This is a test task @work +test'));
 
-    expected.projects.push('+home');
+    expected.projects.push('home');
     assertEqual(expected, new Task('2015-10-26 This is a test task +test @work +home'));
 
     expected.body += ' 2+2 3@3';

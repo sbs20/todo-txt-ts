@@ -17,8 +17,7 @@ export default async function() {
       { file: pkg.module, format: 'esm' }
     ],
     plugins: [
-      typescript(),
-      terser()
+      typescript()
     ]
   });
 

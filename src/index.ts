@@ -1,5 +1,5 @@
+import { ITask } from './types';
 import Task from './task';
 import TaskList from './task-list';
 
-export { Task };
-export { TaskList };
+export { ITask, Task, TaskList };

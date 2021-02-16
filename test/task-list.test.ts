@@ -1,6 +1,6 @@
 import 'mocha/mocha';
 import { assert } from 'chai';
-import { TaskList } from '../src';
+import { Task, TaskList } from '../src/index';
 
 describe('TaskList.parse', () => {
   it('General', () => {
@@ -46,5 +46,24 @@ describe('TaskList.preserveSort', () => {
     tasks.items[1] = task;
 
     assert.strictEqual(tasks.stringify(), val);
+  });
+
+  it('Add.Remove', () => {
+    const val = 'task1\ntask2';
+    let tasks = TaskList.parse(val);
+
+    tasks.push(Task.parse('(A) task 3'));
+    assert.strictEqual(tasks.items[2].index, 2);
+
+    tasks.push(Task.parse('(A) task 4'));
+    assert.strictEqual(tasks.items[3].index, 3);
+
+    tasks.remove(tasks.items[1]);
+    assert.strictEqual(tasks.items.filter(t => t.body.includes('task2')).length, 0);
+    tasks.push(Task.parse('(A) task 5'));
+    assert.strictEqual(tasks.items[3].index, 4);
+
+    tasks = TaskList.parse(tasks.stringify());
+    assert.strictEqual(tasks.items[3].index, 3);
   });
 });

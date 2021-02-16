@@ -39,6 +39,9 @@ describe('Task.parse', () => {
     assertEqual(expected, new Task('(A) This is a +test @work test task'));
     assertEqual(expected, new Task('   (A) This is a  test   task    @work +test    '));
 
+    expected.creationDate = new Date('2015-10-01');
+    assertEqual(expected, new Task('(A) 2015-10-01 This is a +test @work test task'));
+
     expected.creationDate = new Date('2015-10-26');
     assertEqual(expected, new Task('(A) 2015-10-26 This is a +test @work test task'));
 
@@ -104,7 +107,7 @@ describe('Task.parse', () => {
 
   it('General.Actions', () => {
     const task = new Task('(A) A test task');
-    task.complete();
+    task.complete(true);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     assertEqual({
@@ -129,6 +132,11 @@ describe('Task.stringify', () => {
     assert.strictEqual(
       Task.parse('(A) This is a test task @work @play +test due:tomorrow').stringify(),
       '(A) This is a test task @work @play +test due:tomorrow'
+    );
+
+    assert.strictEqual(
+      Task.parse('(A) 2021-02-01 This is a test task @work @play +test due:tomorrow').stringify(),
+      '(A) 2021-02-01 This is a test task @work @play +test due:tomorrow'
     );
   });
 });

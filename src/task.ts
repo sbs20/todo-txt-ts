@@ -108,8 +108,11 @@ export default class Task implements ITask {
     return tokens.join(' ');
   }
 
-  complete(): void {
-    this.isComplete = true;
-    this.completionDate = today();
+  complete(value: boolean): void {
+    this.isComplete = value;
+    delete this.completionDate;
+    if (this.isComplete) {
+      this.completionDate = today();
+    }
   }
 }

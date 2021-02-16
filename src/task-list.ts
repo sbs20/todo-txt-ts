@@ -22,8 +22,19 @@ export default class TaskList {
       .map((e, i) => Task.parse(e, i));
   }
 
+  push(task: Task): void {
+    const maxIndex = Math.max(...this.items.map(t => t.index));
+    task.index = maxIndex + 1;
+    this.items.push(task);
+  }
+
+  remove(task: Task): void {
+    const index = this.items.indexOf(task);
+    this.items.splice(index, 1);
+  }
+
   stringify(): string {
-    return this.items
+    return [...this.items]
       .sort((t1, t2) => t1.index - t2.index)
       .map(t => t.stringify()).join(this.lineEnding);
   }

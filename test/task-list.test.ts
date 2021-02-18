@@ -66,4 +66,46 @@ describe('TaskList.preserveSort', () => {
     tasks = TaskList.parse(tasks.stringify());
     assert.strictEqual(tasks.items[3].index, 3);
   });
+
+  describe('TaskList.sort', () => {
+    it('General', () => {
+      const val = '(B) 2005-01-01 task1\nx (A) 2004-01-01 task2\n(C) 2003-01-01 task4\n(C) 2002-01-01 task3';
+      const tasks = TaskList.parse(val);
+      tasks.sort('priority');
+      assert.strictEqual(tasks.items[0].body, 'task2');
+      assert.strictEqual(tasks.items[1].body, 'task1');
+      assert.strictEqual(tasks.items[2].body, 'task4');
+      assert.strictEqual(tasks.items[3].body, 'task3');
+
+      tasks.sort('priority', 'body');
+      assert.strictEqual(tasks.items[0].body, 'task2');
+      assert.strictEqual(tasks.items[1].body, 'task1');
+      assert.strictEqual(tasks.items[2].body, 'task3');
+      assert.strictEqual(tasks.items[3].body, 'task4');
+
+      tasks.sort('isComplete', 'priority', 'body');
+      assert.strictEqual(tasks.items[0].body, 'task1');
+      assert.strictEqual(tasks.items[1].body, 'task3');
+      assert.strictEqual(tasks.items[2].body, 'task4');
+      assert.strictEqual(tasks.items[3].body, 'task2');
+
+      tasks.sort({ field: 'isComplete', direction: 'desc' }, 'priority', 'body');
+      assert.strictEqual(tasks.items[0].body, 'task2');
+      assert.strictEqual(tasks.items[1].body, 'task1');
+      assert.strictEqual(tasks.items[2].body, 'task3');
+      assert.strictEqual(tasks.items[3].body, 'task4');
+
+      tasks.sort({ field: 'body', direction: 'desc' });
+      assert.strictEqual(tasks.items[0].body, 'task4');
+      assert.strictEqual(tasks.items[1].body, 'task3');
+      assert.strictEqual(tasks.items[2].body, 'task2');
+      assert.strictEqual(tasks.items[3].body, 'task1');
+
+      tasks.sort({ field: 'creationDate', direction: 'desc' });
+      assert.strictEqual(tasks.items[0].body, 'task1');
+      assert.strictEqual(tasks.items[1].body, 'task2');
+      assert.strictEqual(tasks.items[2].body, 'task4');
+      assert.strictEqual(tasks.items[3].body, 'task3');
+    });
+  });  
 });

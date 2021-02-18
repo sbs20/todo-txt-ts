@@ -1,4 +1,6 @@
+import { Sorter } from './sorter';
 import Task from './task';
+import { ITask, ISortOption } from './types';
 
 export default class TaskList {
   lineEnding: string;
@@ -31,6 +33,11 @@ export default class TaskList {
   remove(task: Task): void {
     const index = this.items.indexOf(task);
     this.items.splice(index, 1);
+  }
+
+  sort(...sortOptions: (keyof ITask|ISortOption)[]): void {
+    const sorter = new Sorter(sortOptions);
+    this.items.sort((t1, t2) => sorter.compare(t1, t2));
   }
 
   stringify(): string {

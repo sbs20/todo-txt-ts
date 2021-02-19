@@ -1,10 +1,9 @@
 {
-  "name": "todotxt-ts",
+  "name": "todo-txt-ts",
   "version": "1.0.0",
   "description": "Small Typescript API to todotxt format",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "types": "tsc --project tsconfig.types.json",
     "build": "rollup -c",
@@ -14,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sbs20/todotxt-ts.git"
+    "url": "git://github.com/sbs20/todo-txt-ts.git"
   },
   "keywords": [
     "todotxt",

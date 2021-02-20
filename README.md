@@ -1,12 +1,13 @@
 # TodoTxtTs
 
-Javascript implementation of [todotxt](https://github.com/todotxt/todo.txt) API
+Typescript implementation of [todotxt](https://github.com/todotxt/todo.txt) API
 which offers:
 
 * Parsing
 * Serialization
 * Simple task interface
 * Line ending preservation
+* Multifield sorting
 
 ## Example
 
@@ -58,6 +59,16 @@ console.log(task.stringify());
 /*
 '(A) This is a test task @work +test due:tomorrow'
 */
+
+// Do you own sorting natively
+tasks.items.sort((t1, t2) => t1.raw.localeCompare(t2.raw));
+
+// Or use the sort method which takes a spread array of parameters which can be
+// strings or SortOptions
+tasks.sort(
+  { field: 'isComplete', direction: 'desc' }, // lists completed first
+  'priority', // (A) -> (Z) -> undefined
+  'body');
 ```
 
 ## Exclusions
@@ -67,8 +78,7 @@ the spec are completion and creation dates - both of which are concrete. Other
 dates such as due dates may be relative but are not part of the spec and so are
 left to the UI / application layer.
 
-Filtering and sorting are natively available and are not implemented here.
-Default "sorters" may be added in time.
+Filtering is natively available and not implemented here.
 
 ## Acknowledgements
 

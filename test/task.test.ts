@@ -130,7 +130,7 @@ describe('Task', () => {
       assert.strictEqual(Task.parse('Hello\nWorld').body, 'Hello World');
       assert.strictEqual(Task.parse('Hello\r\nWorld').body, 'Hello World');
       assert.strictEqual(Task.parse('Hello\n\n\n\nWorld').body, 'Hello World');
-    })
+    });
   });
 
   it('stringify', () => {

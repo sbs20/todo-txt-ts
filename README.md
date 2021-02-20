@@ -9,6 +9,12 @@ which offers:
 * Line ending preservation
 * Multifield sorting
 
+## Install
+
+```console
+npm i todo-txt-ts
+```
+
 ## Example
 
 Tasks look like this

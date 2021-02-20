@@ -1,17 +1,27 @@
 # Development
 
+## Use locally prior to publish
+
+From the package: `npm link`
+From the consumer: `npm link todo-txt-ts`
+
+To undo, unlink in reverse
+From the consumer: `npm unlink todo-txt-ts`
+From the package: `npm unlink`
+
 ## Dependencies
-* "@babel/core": Build transpilation
-* "@babel/preset-typescript": Build transpilation
 * "@rollup/plugin-node-resolve": Build
+* "@rollup/plugin-typescript": Build
 * "@types/chai": Typescript types
 * "@types/mocha": Typescript types
 * "@typescript-eslint/eslint-plugin": Linting
 * "@typescript-eslint/parser": Linting
 * "chai": Test dev
+* "del": Build
 * "eslint": Linting
 * "mocha": Unit testing
 * "rollup": Build
+* "rollup-plugin-terser": Build output
 * "ts-mocha": Running typescript unit tests
 * "ts-node": Running typescript
 * "typescript": Typescript

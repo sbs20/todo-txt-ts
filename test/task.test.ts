@@ -133,6 +133,36 @@ describe('Task', () => {
     });
   });
 
+  it('load', () => {
+    const task = Task.parse('x 2021-02-01 (A) 2021-01-01 The task @Context +Project field:value');
+    assertEqual({
+      isComplete: true,
+      completionDate: new Date(2021, 1, 1),
+      priority: 'A',
+      creationDate: new Date(2021, 0, 1),
+      body: 'The task',
+      contexts: [
+        'Context'
+      ],
+      projects: [
+        'Project'
+      ],
+      fields: {
+        'field': 'value'
+      }
+    }, task);
+
+    task.load('A task');
+    assertEqual({
+      isComplete: false,
+      body: 'A task',
+      contexts: [],
+      projects: [],
+      fields: {}
+    }, task);
+
+  });
+
   it('stringify', () => {
     assert.strictEqual(
       Task.parse('   (A) This is a  test   task    @work +test    ').stringify(),

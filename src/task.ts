@@ -35,11 +35,13 @@ export default class Task implements ITask {
     const line = data.trim();
     const tokens = line.split(/\s+/).map(s => s.trim());
 
+    this.isComplete = false;
     if (tokens[0] === 'x') {
       this.isComplete = true;
       tokens.shift();
     }
 
+    delete this.completionDate;
     if (this.isComplete && tokens.length > 1) {
       const completionDate = tryParseDate(tokens[0]);
       if (completionDate) {
@@ -48,12 +50,14 @@ export default class Task implements ITask {
       }
     }
 
+    delete this.priority;
     const priority = tokens[0].match(/\(([A-Z])\)/);
     if (priority) {
       this.priority = priority[1];
       tokens.shift();
     }
 
+    delete this.creationDate;
     const creationDate = tryParseDate(tokens[0]);
     if (creationDate) {
       this.creationDate = creationDate;
@@ -68,6 +72,7 @@ export default class Task implements ITask {
       .map(s => s.substr(1))
       .filter(s => s.length > 0);
 
+    this.fields = {};
     spliceWhere(tokens, s => /[^:]+:[^:]+/.test(s))
       .forEach(s => {
         const tuple = s.split(':');

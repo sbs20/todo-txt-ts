@@ -1,6 +1,6 @@
 {
   "name": "todo-txt-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small Typescript API to todotxt format",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

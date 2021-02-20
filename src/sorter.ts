@@ -4,9 +4,9 @@ function compareValues<T extends unknown>(v1: T | undefined, v2: T | undefined):
   if (v1 === undefined && v2 === undefined) {
     return 0;
   } else if (v1 === undefined) {
-    return -1;
-  } else if (v2 === undefined) {
     return 1;
+  } else if (v2 === undefined) {
+    return -1;
   }
 
   if (typeof v1 === 'number') {

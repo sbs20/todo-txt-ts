@@ -26,6 +26,9 @@ From the package: `npm unlink`
 * "ts-node": Running typescript
 * "typescript": Typescript
 
+## Publishing
+See [https://zellwk.com/blog/publish-to-npm/](this).
+
 ## Reference
 * [https://journal.artfuldev.com/write-tests-for-typescript-projects-with-mocha-and-chai-in-typescript-86e053bdb2b6](Typescript unit tests)
 * [Deploying to NPM with Typescript and Rollup](https://levelup.gitconnected.com/how-to-deploy-an-npm-package-d75843fb77f1)

@@ -27,7 +27,12 @@ From the package: `npm unlink`
 * "typescript": Typescript
 
 ## Publishing
-See [https://zellwk.com/blog/publish-to-npm/](this).
+See [https://zellwk.com/blog/publish-to-npm/](this). But:
+
+```
+npm run all
+npm publish
+```
 
 ## Reference
 * [https://journal.artfuldev.com/write-tests-for-typescript-projects-with-mocha-and-chai-in-typescript-86e053bdb2b6](Typescript unit tests)

@@ -73,7 +73,7 @@ export default class Task implements ITask {
       .filter(s => s.length > 0);
 
     this.fields = {};
-    spliceWhere(tokens, s => /[^:]+:[^:]+/.test(s))
+    spliceWhere(tokens, s => /[^:]+:[^/:][^:]*/.test(s))
       .forEach(s => {
         const tuple = s.split(':');
         this.fields[tuple[0]] = tuple[1];

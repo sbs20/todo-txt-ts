@@ -152,6 +152,19 @@ describe('Task', () => {
       }
     }, task);
 
+    task.load('(A) 2021-01-01 The task http://example.com field:value');
+    assertEqual({
+      isComplete: false,
+      priority: 'A',
+      creationDate: new Date(2021, 0, 1),
+      body: 'The task http://example.com',
+      contexts: [],
+      projects: [],
+      fields: {
+        'field': 'value'
+      }
+    }, task);
+
     task.load('A task');
     assertEqual({
       isComplete: false,

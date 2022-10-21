@@ -130,6 +130,9 @@ describe('Task', () => {
       assert.strictEqual(Task.parse('Hello\nWorld').body, 'Hello World');
       assert.strictEqual(Task.parse('Hello\r\nWorld').body, 'Hello World');
       assert.strictEqual(Task.parse('Hello\n\n\n\nWorld').body, 'Hello World');
+      assert.strictEqual(Task.parse('test(X)').body, 'test(X)');
+      assert.strictEqual(Task.parse('(O)_(O)').body, '(O)_(O)');
+      assert.strictEqual(Task.parse('u(W)u').body, 'u(W)u');
     });
   });
 

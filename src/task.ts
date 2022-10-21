@@ -51,7 +51,7 @@ export default class Task implements ITask {
     }
 
     delete this.priority;
-    const priority = tokens[0].match(/\(([A-Z])\)/);
+    const priority = tokens[0].match(/^\(([A-Z])\)$/);
     if (priority) {
       this.priority = priority[1];
       tokens.shift();

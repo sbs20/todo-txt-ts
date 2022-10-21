@@ -40,6 +40,7 @@ jobs:
             ${{ runner.OS }}-
 
       # Install packages and build
+      - run: npm install .
       - run: npm run lint
       - run: npm run test
       - run: npm run build
